@@ -8,9 +8,6 @@ const app = express();
 // db
 const connectDB = require("./db/connect");
 
-// City Infod
-const fetchCitiesData = require('./utils/fetchCitiesData');
-
 // Batch
 const seoulCitiesAPIBatchJob = require('./utils/seoulCitiesAPIBatchJob');
 seoulCitiesAPIBatchJob();

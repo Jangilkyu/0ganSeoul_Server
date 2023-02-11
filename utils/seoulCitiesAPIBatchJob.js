@@ -6,7 +6,7 @@ let index = require('../utils/index');
 
 const seoulCitiesAPIBatchJob = () => {
 	const rule = new schedule.RecurrenceRule();
-	rule.minute = [ZERO, HALFPAST]
+	rule.minute = [process.env.ZERO, process.env.HALFPAST]
 	schedule.scheduleJob(rule, function() {
 		index.sharedInt = 0;
 		citiesList.map((city) => {
