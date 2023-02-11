@@ -1,0 +1,1 @@
+let sharedInt = 0;
