@@ -5,6 +5,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // db
 const connectDB = require("./db/connect");
 
@@ -18,8 +21,10 @@ const port = process.env.PORT || 3000;
 
 // Router
 const seoulCitiesDataRouter = require('./routes/seoulCitiesData');
+const citiesRouter = require('./routes/cities');
 
 app.use('/api/v1/seoulCitiesData', seoulCitiesDataRouter);
+app.use('/api/v1/citiesRouter', citiesRouter);
 
 const start = async () => {
     await connectDB(mongoURI());
