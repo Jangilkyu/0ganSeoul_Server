@@ -18,18 +18,15 @@ const fetchCitiesData = async(city) => {
             const AREA_NM = result["SeoulRtd.citydata"].CITYDATA.AREA_NM;
             const LIVE_PPLTN_STTS = result["SeoulRtd.citydata"].CITYDATA.LIVE_PPLTN_STTS.LIVE_PPLTN_STTS;
             const ROAD_TRAFFIC_STTS = result["SeoulRtd.citydata"].CITYDATA.ROAD_TRAFFIC_STTS.AVG_ROAD_DATA;
-            const SBIKE_STTS = result["SeoulRtd.citydata"].CITYDATA.SBIKE_STTS;
+            const SBIKE_STTS = result["SeoulRtd.citydata"].CITYDATA.SBIKE_STTS.SBIKE_STTS;
+            
             const city = {};
-
             city.AREA_NM = AREA_NM;
             city.LIVE_PPLTN_STTS = LIVE_PPLTN_STTS
             city.AVG_ROAD_DATA = ROAD_TRAFFIC_STTS;
-            
             if (SBIKE_STTS !== "") {
               city.SBIKE_STTS = SBIKE_STTS;
-              console.log("SBIKE_STTS",SBIKE_STTS);
             }
-
 
             ++index.sharedInt;
             cityArr.push(city);
