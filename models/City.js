@@ -89,6 +89,31 @@ const AVG_ROAD_DATA = new mongoose.Schema({
     }
 });
 
+const SBIKE_STTS = new mongoose.Schema({
+    SBIKE_SPOT_NM: {
+        type: String,
+    },
+    SBIKE_SPOT_ID: {
+        type: String,
+    },
+    SBIKE_SHARED: {
+        type: String,
+    },
+    SBIKE_PARKING_CNT: {
+        type: String,
+    },
+    SBIKE_RACK_CNT: {
+        type: String,
+    },
+    SBIKE_X: {
+        type: String,
+    },
+    SBIKE_Y: {
+        type: String,
+    },
+  });
+  
+
 const CitySchema = new mongoose.Schema({
 
     LIVE_PPLTN_STTS: {
@@ -97,6 +122,10 @@ const CitySchema = new mongoose.Schema({
 
     AVG_ROAD_DATA: {
         type: AVG_ROAD_DATA,
+    },
+
+    SBIKE_STTS: {
+        type: [SBIKE_STTS],
     },
 
     AREA_NM : {
