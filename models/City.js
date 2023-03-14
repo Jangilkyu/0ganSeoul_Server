@@ -135,6 +135,10 @@ const CitySchema = new mongoose.Schema({
 
 const CitiesSchema = new mongoose.Schema({
     cities: [CitySchema],
+    nowDate: {
+        type: Date,
+        default: Date.now,
+      },
 });
 
 
