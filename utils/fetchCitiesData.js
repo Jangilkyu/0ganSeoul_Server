@@ -79,7 +79,7 @@ const fetchCitiesData = async(city) => {
         if (err) {
           console.log("Error: ", err);
         } else {
-            console.log("Error: ", result);
+            console.log("result: ", result);
         }
       }
     );
