@@ -12,28 +12,28 @@ const getSearchCities = async (req, res) => {
     res.status(StatusCodes.OK).json(results);
 }
 
-const getSeoulInitCityAPI = async (req, res) => {
-    try {
-      await Promise.all(citiesList.map((city) => createCitiesData(city)));
-      
-      const citiesCount = await City.find();
-      if (Array.isArray(citiesCount) && citiesCount.length === 0) {
-        let cityData = new City({ cities: cityArr });      
-        cityData.save((err, cityInfo) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("cityInfo",cityInfo);
-          }});
-      }
+const createSeoulInitCityAPI = async (req, res) => {
+  try {
+    const citiesArr = [];
+    await Promise.all(citiesList.map((city) => createCitiesData(city, citiesArr)));
 
-      res.status(StatusCodes.OK).json(cityArr);
-    } catch (error) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
+    const citiesCount = await City.find();
+    if (Array.isArray(citiesCount) && citiesCount.length === 0) {
+      try {
+        const cityData = new City({cities: citiesArr});
+        await cityData.save();
+      } catch (error) {
+        console.log(error);
+      }
     }
-  };
+
+    res.status(StatusCodes.OK).json({citiesArr});
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: error.message});
+  }
+};
 
 module.exports = {
     getSearchCities,
-    getSeoulInitCityAPI,
+    createSeoulInitCityAPI,
 }

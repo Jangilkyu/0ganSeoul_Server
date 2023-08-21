@@ -3,10 +3,10 @@ const router = express.Router();
 
 const {
     getSearchCities,
-    getSeoulInitCityAPI
+    createSeoulInitCityAPI
 } = require('../controllers/cities');
 
 router.route('/').get(getSearchCities);
-router.route('/create').get(getSeoulInitCityAPI);
+router.route('/create').get(createSeoulInitCityAPI);
 
 module.exports = router;
