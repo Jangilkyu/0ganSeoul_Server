@@ -22,9 +22,11 @@ const port = process.env.PORT || 3000;
 // Router
 const seoulCitiesDataRouter = require('./routes/seoulCitiesData');
 const citiesRouter = require('./routes/cities');
+const categoriesRouter = require('./routes/categories');
 
 app.use('/api/v1/seoulCitiesData', seoulCitiesDataRouter);
 app.use('/api/v1/citiesRouter', citiesRouter);
+app.use('/api/v1/categoriesRouter', categoriesRouter);
 
 const start = async () => {
     await connectDB(mongoURI());
