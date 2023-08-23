@@ -7,7 +7,7 @@ const City = require('../models/City');
 
 const fetchCitiesData = async(city) => {
 
-    var uri = `${OPEN_API_SEOUL}/${API_KEY}/${TYPE}/${SERVICE}/${START_INDEX}/${END_INDEX}/${city}`;
+    var uri = `${OPEN_API_SEOUL}/${API_KEY}/${TYPE}/${SERVICE}/${START_INDEX}/${END_INDEX}/${city[0]}`;
     var encodedURI = encodeURI(uri);
     var response = await fetch(encodedURI);
     var xml = await response.text();
@@ -17,6 +17,9 @@ const fetchCitiesData = async(city) => {
     const { ROAD_MSG, ROAD_TRAFFIC_IDX, ROAD_TRFFIC_TIME, ROAD_TRAFFIC_SPD } = ROAD_TRAFFIC_STTS.AVG_ROAD_DATA;
     const sBikeStats = SBIKE_STTS ? SBIKE_STTS.SBIKE_STTS : [];
     const sBikeSpotNames = sBikeStats;
+    const latitude = city[1];
+    const longitude = city[2];
+    const Category = city[3];
 
     const { 
         LIVE_PPLTN_STTS: { 
@@ -70,6 +73,11 @@ const fetchCitiesData = async(city) => {
             ROAD_TRAFFIC_SPD 
         },
         SBIKE_STTS: sBikeSpotNames,
+        Coordinate: {
+            latitude,
+            longitude,
+          },
+          Category,
     };
     
     City.updateOne(
@@ -85,4 +93,4 @@ const fetchCitiesData = async(city) => {
     );
 }
 
-module.exports = fetchCitiesData
+module.exports = fetchCitiesData;
